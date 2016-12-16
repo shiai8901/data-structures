@@ -16,8 +16,6 @@ var LinkedList = function() {
       list.tail.next = newTail;
       list.tail = newTail;
     }
-    console.log(list.head);
-    console.log(list.tail);
   };
 
   list.removeHead = function() {
