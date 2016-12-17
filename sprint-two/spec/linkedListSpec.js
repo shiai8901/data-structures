@@ -52,4 +52,22 @@ describe('linkedList', function() {
   });
 
   // add more tests here to test the functionality of linkedList
+  it('should throw an exception when trying to delete element from an empty list', function() {
+    linkedList.addToTail(4);
+    linkedList.removeHead();
+    expect(linkedList.getSize()).to.equal(0);
+    linkedList.removeHead();
+    expect(linkedList.removeHead()).to.equal('empty list!');
+
+  }); 
+
+
+  it('should return the size of the linkedList', function() {
+    expect(linkedList.getSize()).to.equal(0);
+    linkedList.addToTail(0);
+    linkedList.addToTail(1);
+    expect(linkedList.getSize()).to.equal(2);
+    linkedList.removeHead();
+    expect(linkedList.getSize()).to.equal(1);
+  });
 });

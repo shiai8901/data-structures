@@ -33,6 +33,7 @@ describe('tree', function() {
   });
 
   it('should correctly detect nested children', function() {
+    //debugger;
     tree.addChild(5);
     tree.addChild(6);
     tree.children[0].addChild(7);
