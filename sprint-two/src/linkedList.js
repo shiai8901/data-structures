@@ -2,6 +2,7 @@ var LinkedList = function() {
   var list = {};
   list.head = null;
   list.tail = null;
+  list.size = 0;
   
   list.addToTail = function(value) {
     if(list.head === null) {
@@ -16,6 +17,7 @@ var LinkedList = function() {
       list.tail.next = newTail;
       list.tail = newTail;
     }
+    list.size++;
   };
 
   list.removeHead = function() {
@@ -23,12 +25,16 @@ var LinkedList = function() {
       var oldHead = list.head;
       list.head = list.head.next;
       oldHead.next = null;
+      list.size--;
       return oldHead.value;
     } else if (list.head !== null && list.head.next === null) {
       var oldHead = list.head;
       list.head = null;
       list.tail = null;
+      list.size--;
       return oldHead.value;
+    } else {
+      return 'empty list!';
     }
   };
 
@@ -44,18 +50,26 @@ var LinkedList = function() {
     return false;
   };
 
+  list.getSize = function() {
+    return list.size;
+  };
   return list;
 };
 
+
+
 var Node = function(value) {
-  var node = {};
+  //var node = {};
 
-  node.value = value;
-  node.next = null;
+  this.value = value;
+  this.next = null;
 
-  return node;
+  //return node;
 };
 
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+// addToTail: O(1);
+// removeHead: O(1);
+// contains: O(n);

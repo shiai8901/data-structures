@@ -32,3 +32,6 @@ setPrototype.remove = function(item) { // O(1)
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+// add: O(n);
+// contains: O(n);
+// remove: O(n);

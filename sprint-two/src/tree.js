@@ -26,20 +26,46 @@ treeMethods.contains = function(target) {
   var keys = Object.keys(this.children);
   var numOfChildren = keys.length;
 
-  var result = false;
-  for (var i = 0; i < numOfChildren; i++) {
-    if (this.children[keys[i]].value === target) {
-      result = true;
-      break;
-    } else if (numOfChildren !== 0) {
-      result = this.children[keys[i]].contains(target);
-      if (result === true) {
-        return true;
-      }
-    }
+  if (this.value === target) {
+    return true;
   }
+  for (var i = 0; i < numOfChildren; i++) {
+    if (this.children[keys[i]].contains(target)) {
+      return true;
+    } 
+  }
+  return false;
 
-  return result;
+  // Solution II: with John
+  // var result = false;
+  // for (var i = 0; i < numOfChildren; i++) {
+  //   if (this.children[keys[i]].value === target) {
+  //     result = true;
+  //     break;
+  //   } else if (numOfChildren !== 0) {
+  //     result = this.children[keys[i]].contains(target);
+  //     if (result === true) {
+  //       return true;
+  //     }
+  //   }
+  // }
+  
+  // Solution III
+  // function traverse(node) {
+  //   for (var i = 0; i < numOfChildren; i++) {
+  //     if (this.children[keys[i]].value === target) {
+  //       result = true;
+       
+  //     } else if (numOfChildren !== 0) {
+  //       traverse(this.children[keys[i]]);
+
+  //     }
+  //   }
+  // }
+
+  // traverse(this);
+
+ // return result;
 };
 
 
@@ -47,3 +73,5 @@ treeMethods.contains = function(target) {
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+// addChild: O(log n);
+// contains: O(log n);
