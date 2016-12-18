@@ -8,12 +8,19 @@ var setPrototype = {};
 
 // O(n) because contains takes O(n) time and add a new item will cost O(1) time
 setPrototype.add = function(item) { 
+  if (typeof item !== 'string') {
+    item = JSON.stringify(item);
+  }
   if (!this.contains(item)) {
     this._storage[item] = item;
   }
 };
 
 setPrototype.contains = function(item) { // O(n) because it has to check every element
+  if (typeof item !== 'string') {
+    item = JSON.stringify(item);
+  }
+
   for (var element in this._storage) {
     if (element === item) {
       return true;
@@ -23,7 +30,10 @@ setPrototype.contains = function(item) { // O(n) because it has to check every e
 };
 
 setPrototype.remove = function(item) { // O(1)
-  if (this.contains(item)) {
+  if (typeof item !== 'string') {
+    item = JSON.stringify(item);
+  }
+    if (this.contains(item)) {
     delete this._storage[item];
     return item;
   }

@@ -65,16 +65,34 @@ binarySearchTreeMethods.contains = function(value) {
 
 binarySearchTreeMethods.depthFirstLog = function(cb) {
     function traverse(node) {
-        cb(node.value);
-        if (node.left.value !== undefined) {
-            traverse(node.left);
-        } 
-        if (node.right.value !== undefined) {
-            traverse(node.right);
-        }
-    };
+        if (node.value === undefined) {
+          return;
+        }    
+        cb(node.value);  
+        traverse(node.left);      
+        traverse(node.right);       
+    }
     traverse(this);    
 };
+
+binarySearchTreeMethods.breadthFirstLog = function() {
+    var queue = [this];
+    var result = [];
+
+    while (queue.length > 0) {
+        var current = queue.shift();
+        if (current.value !== undefined) {
+            result.push(current.value);
+        }
+        if (current.left) {
+            queue.push(current.left);
+        }
+        if (current.right) {
+            queue.push(current.right);
+        }
+    }
+    return JSON.stringify(result);
+}
 
 /*
  * Complexity: What is the time complexity of the above functions?

@@ -57,12 +57,10 @@ HashTable.prototype.remove = function(k) {
       bucket.splice(i, 1);
       //this._storage.set(index,bucket);
       this._filled--;
-
-       if (this._filled < this._limit / 4) {
-          this.resize(this._limit / 2);
-       }
-      return tmp;
-      
+      if (this._filled < this._limit / 4) {
+        this.resize(this._limit / 2);
+      }
+      return tmp;      
     }
   }
   
@@ -84,21 +82,22 @@ HashTable.prototype.resize = function(newlimit) {
   //   }
     
   // }
+  var t = this;
   var oldStorage = this._storage;
 
   this._limit = newlimit;
   this._filled = 0;
   this._storage = LimitedArray(newlimit);
-  var fn=this._storage;
+  //var fn=this._storage;
   oldStorage.each(function(bucket) {
     if (!bucket) {
       return;
     }
     for (var i = 0; i < bucket.length; i++) {
       var tuple = bucket[i];
-      this.insert(tuple[0], tuple[1]);
+      t.insert(tuple[0], tuple[1]);
     }
-  }.bind(this));
+  });
 };
 
 /*
@@ -107,4 +106,4 @@ HashTable.prototype.resize = function(newlimit) {
 // insert: O(1) on average, O(n) worst case
 // retrieve: O(1) on average, O(n) worst case
 // remove: O(1) on average, O(n) worst case 
-
+// resize: O(n)

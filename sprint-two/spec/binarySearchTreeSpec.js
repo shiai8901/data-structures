@@ -36,4 +36,18 @@ describe('binarySearchTree', function() {
     binarySearchTree.depthFirstLog(func);
     expect(array).to.eql([5, 2, 3]);
   });
+
+  it('breadth first search', function() {
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(10);
+    binarySearchTree.insert(1);
+    binarySearchTree.insert(4);
+    binarySearchTree.insert(7);
+    binarySearchTree.insert(11);
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(6);
+
+    var v = JSON.stringify([5,3,10,1,4,7,11,2,6]);
+    expect(binarySearchTree.breadthFirstLog()).to.equal(v);
+  });
 });

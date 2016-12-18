@@ -68,6 +68,22 @@ treeMethods.contains = function(target) {
  // return result;
 };
 
+treeMethods.traverse = function(callback) {
+
+  function helper(node) {
+    node.value = callback(node.value);
+    var keys = Object.keys(node.children);
+    if(keys) {
+      var numOfChildren = keys.length;
+      var child = node.children;
+      for (var i = 0; i < numOfChildren; i++) {
+        helper(node.children[keys[i]]); 
+      }  
+    }
+  }
+  helper(this);
+  
+};
 
 
 /*

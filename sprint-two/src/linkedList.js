@@ -8,11 +8,13 @@ var LinkedList = function() {
     if(list.head === null) {
       list.tail = new Node(value);
       list.head = list.tail;
-    } else if (list.head === list.tail) {
-      var newTail = new Node(value);
-      list.head.next = newTail;
-      list.tail = newTail;
-    } else {
+    } 
+    // else if (list.head === list.tail) {
+    //   var newTail = new Node(value);
+    //   list.head.next = newTail;
+    //   list.tail = newTail;
+    // } 
+    else {
       var newTail = new Node(value);
       list.tail.next = newTail;
       list.tail = newTail;
